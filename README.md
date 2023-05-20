@@ -1,25 +1,3 @@
-# ug-locale
-
-> Data was collected from https://passports.go.ug
-
-```javascript
-const UgaLocale = require("ug-locale")();
-
-const district = UgaLocale.districts().find((d) => d.id === "42");
-console.log("district", district);
-
-const county = UgaLocale.counties(district.id);
-console.log("county", county);
-
-const subCounty = UgaLocale.subCounties(county[3].id);
-console.log("subCounty", subCounty);
-
-const parish = UgaLocale.parishes(subCounty[0].id);
-console.log("parish", parish);
-
-const village = UgaLocale.villages(parish[0].id);
-console.log("village", village);
-```
 # UG-Locale
 
 UG-Locale is a simple utility library that provides structured data about the administrative divisions in Uganda. It contains information about districts, counties, sub-counties, parishes, and villages. The data used in this library was collected from the official [Ugandan Passport website](https://passports.go.ug).
