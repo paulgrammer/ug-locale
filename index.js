@@ -1,29 +1,25 @@
-const districts = require("./districts.json");
-const counties = require("./counties.json");
-const subCounties = require("./subcounties.json");
-const parishes = require("./parishes.json");
-const villages = require("./villages.json");
+import { districts } from "./districts.js";
+import { counties } from "./counties.js";
+import { subcounties } from "./subcounties.js";
+import { parishes } from "./parishes.js";
+import { villages } from "./villages.js";
 
-module.exports = () => {
-  return {
-    districts: (id) => {
-      return districts;
-    },
+class UgaLocale {
+  getDistricts() {
+    return districts;
+  }
+  getCounties(districtId) {
+    return counties.filter((c) => c.district === districtId);
+  }
+  getSubCounties(countyId) {
+    return subcounties.filter((sc) => sc.county === countyId);
+  }
+  getParishes(subCountyId) {
+    return parishes.filter((p) => p.subcounty === subCountyId);
+  }
+  getVillages(parishId) {
+    return villages.filter((v) => v.parish === parishId);
+  }
+}
 
-    counties: (district) => {
-      return counties.filter((c) => c.district === district);
-    },
-
-    subCounties: (county) => {
-      return subCounties.filter((c) => c.county === county);
-    },
-
-    parishes: (subCounty) => {
-      return parishes.filter((c) => c.subcounty === subCounty);
-    },
-
-    villages: (parish) => {
-      return villages.filter((c) => c.parish === parish);
-    },
-  };
-};
+export { UgaLocale };
